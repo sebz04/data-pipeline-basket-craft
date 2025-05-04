@@ -1,39 +1,39 @@
 name: Run Basket Craft Website Sessions Raw
 
 on:
-    schedule:
-        - cron: '*/15 * * * *' # Every 15 minutes
-    workflow_dispatch: # optional manual trigger
+  schedule:
+    - cron: '*/15 * * * *'  # Every 15 minutes
+  workflow_dispatch:  # optional manual trigger
 
 env:
-    MYSQL_USER: ${{ secrets.MYSQL_USER }}
-    MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
-    MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
-    MYSQL_DB: ${{ secrets.MYSQL_DB }}
-    POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
-    POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
-    POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
-    POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
+  MYSQL_USER: ${{ secrets.MYSQL_USER }}
+  MYSQL_PASSWORD: ${{ secrets.MYSQL_PASSWORD }}
+  MYSQL_HOST: ${{ secrets.MYSQL_HOST }}
+  MYSQL_DB: ${{ secrets.MYSQL_DB }}
+  POSTGRES_USER: ${{ secrets.POSTGRES_USER }}
+  POSTGRES_PASSWORD: ${{ secrets.POSTGRES_PASSWORD }}
+  POSTGRES_HOST: ${{ secrets.POSTGRES_HOST }}
+  POSTGRES_DB: ${{ secrets.POSTGRES_DB }}
 
 jobs:
-    extract-load:
-        name: Extract and Load Raw Basket Craft Website Sessions
-        runs-on: ubuntu-latest
+  extract-load:
+    name: Extract and Load Raw Basket Craft Website Sessions
+    runs-on: ubuntu-latest
 
-        steps:
-            - name: Checkout code
-                uses: actions/checkout@v3
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-            - name: Set up Python
-                uses: actions/setup-python@v4
-                with:
-                    python-version: '3.11'
-            
-            - name: Install dependencies
-                run: |
-                    python -m pip install --upgrade pip
-                    pip install -r requirements.txt
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.11'
 
-            - name: Extract and load Website Sessions to raw schema
-                run: |
-                    python elt/basket_craft_website_sessions_extract_load_raw.py
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Extract and load Website Sessions to raw schema
+        run: |
+          python elt/basket_craft_website_sessions_extract_load_raw.py

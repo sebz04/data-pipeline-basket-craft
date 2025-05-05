@@ -39,7 +39,7 @@ df
 # %%
 # Truncate the raw.website_sessions table to clear old data
 with pg_engine.connect() as connection:
-    connection.execute(text("TRUNCATE TABLE raw.website_sessions"))
+    connection.execute(text("TRUNCATE TABLE raw.website_sessions CASCADE"))
 
 # Append the new data without dropping the tables 
 df.to_sql('website_sessions', pg_engine, schema='raw', if_exists='append', index=False)

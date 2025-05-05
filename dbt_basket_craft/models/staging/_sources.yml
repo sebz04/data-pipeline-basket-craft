@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: basket_craft_quiz
+    database: basket_craft_quiz
+    schema: raw
+    tables:
+      - name: website_sessions
+        description: "Basket Craft website sessions data"
+        columns:
+          - name: website_session_id
+          - name: created_at
+          - name: user_id
+          - name: is_repeat_session
+          - name: utm_source
+          - name: utm_campaign
+          - name: utm_content
+          - name: device_type
+          - name: http_referer

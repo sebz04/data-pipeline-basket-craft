@@ -4,6 +4,7 @@ import pandas as pd
 from sqlalchemy import create_engine
 import os
 from dotenv import load_dotenv
+from sqlalchemy import text
 
 # %%
 # Load environment variables from .env file
@@ -36,8 +37,12 @@ pg_engine = create_engine(pg_conn_str)
 df = pd.read_sql("SELECT * FROM website_sessions WHERE created_at BETWEEN '2023-12-01' AND '2023-12-31 23:59:59';", mysql_engine)
 df
 # %%
-# Move data into Postgres
-df.to_sql('website_sessions', pg_engine, schema = 'raw', if_exists='replace', index=False)
+# Truncate the raw.website_sessions table to clear old data
+with pg_engine.connect() as connection:
+    connection.execute(text("TRUNCATE TABLE raw.website_sessions"))
+
+# Append the new data without dropping the table
+df.to_sql('website_sessions', pg_engine, schema='raw', if_exists='append', index=False)
 
 
 # %%

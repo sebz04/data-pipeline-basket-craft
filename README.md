@@ -24,4 +24,4 @@ This project builds a complete data pipeline that extracts website session data 
 
 ### 🔗 Looker Dashboard (Unlisted)
 
-https://lookerstudio.google.com/reporting/5566edf4-0c14-482f-84e6-37325c2706f0
+[https://lookerstudio.google.com/reporting/5566edf4-0c14-482f-84e6-37325c2706f0](https://lookerstudio.google.com/reporting/5566edf4-0c14-482f-84e6-37325c2706f0)

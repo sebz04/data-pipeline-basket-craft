@@ -41,7 +41,7 @@ df
 with pg_engine.connect() as connection:
     connection.execute(text("TRUNCATE TABLE raw.website_sessions"))
 
-# Append the new data without dropping the table
+# Append the new data without dropping the tables 
 df.to_sql('website_sessions', pg_engine, schema='raw', if_exists='append', index=False)
 
 
